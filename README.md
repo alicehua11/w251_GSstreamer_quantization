@@ -36,9 +36,77 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-raw,framerate=30/1,width=640
 Python source code: look at server.py
 
 ### Part 2: Model optimization and quantization
+* Note: If run on Docker container, make sure to raise the shared memory limit so that you can use higher batch size. You can do so with the command for JetPack version 4.4.1 or can be found at this [link](https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md)
+```
+docker run --gpus all -it --rm --shm-size=2048m dustynv/jetson-inference:r32.4.4
+```
 Similar to lab, we converted Keras saved model to TensorRT to look at 
 
+1) The base model used, trained using Jetson device and Jetson Inference scripts:
+- mobilenet-v1-ssd-mp-0_675.pth
 
+2) A description of your dataset 
+Using the [Google Open Images Dataset]("https://storage.googleapis.com/openimages/web/visualizer/index.html?set=train&type=segmentation"), I chose seven classes of animals. The below command will download the dataset onto the running container:
+```
+python3 open_images_downloader.py --class-names "Rhinoceros,Sea turtle,Sparrow,Whale,Zebra,Blue jay,Armadillo" --data=data/animal
+``` 
+A total of 4300 images of 7 classes were downloaded. Below is the stats for the train/validation/test dataset
+```
+-------------------------------------
+ 'train' set statistics
+-------------------------------------
+  Image count:  3626
+  Bounding box count:  5179
+  Bounding box distribution: 
+    Sparrow:  1387/5179 = 0.27
+    Zebra:  993/5179 = 0.19
+    Sea turtle:  958/5179 = 0.18
+    Whale:  912/5179 = 0.18
+    Rhinoceros:  659/5179 = 0.13
+    Blue jay:  232/5179 = 0.04
+    Armadillo:  38/5179 = 0.01
+ 
+
+-------------------------------------
+ 'validation' set statistics
+-------------------------------------
+  Image count:  171
+  Bounding box count:  220
+  Bounding box distribution: 
+    Sparrow:  63/220 = 0.29
+    Zebra:  41/220 = 0.19
+    Whale:  41/220 = 0.19
+    Sea turtle:  33/220 = 0.15
+    Rhinoceros:  21/220 = 0.10
+    Blue jay:  21/220 = 0.10
+ 
+
+-------------------------------------
+ 'test' set statistics
+-------------------------------------
+  Image count:  505
+  Bounding box count:  675
+  Bounding box distribution: 
+    Sparrow:  159/675 = 0.24
+    Sea turtle:  152/675 = 0.23
+    Whale:  124/675 = 0.18
+    Zebra:  111/675 = 0.16
+    Rhinoceros:  69/675 = 0.10
+    Blue jay:  60/675 = 0.09
+ 
+
+-------------------------------------
+ Overall statistics
+-------------------------------------
+  Image count:  4302
+  Bounding box count:  6074
+
+```
+
+ 
+3) How long 
+|           | Images/sec | Time per epoch* |
+| Xavier NX |            |                 |
 
 ### References:
 - For GStreamer:
@@ -49,6 +117,7 @@ Similar to lab, we converted Keras saved model to TensorRT to look at
 - For Jetson Inference & Optimization
 	- https://github.com/dusty-nv/jetson-inference
 	- https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-ssd.md
+	- https://github.com/dusty-nv/pytorch-ssd/blob/master/open_images_classes.txt
 	- https://storage.googleapis.com/openimages/web/download.html
 	- https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html
 	 
