@@ -36,7 +36,7 @@ gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-raw,framerate=30/1,width=640
 Python source code: look at client.py
 
 ### Part 2: Model optimization and quantization
-Similar to lab, we converted Keras saved model to TensorRT to look at
+Similar to lab6 where we converted Keras saved model to TensorRT to look at 3 different quantization FP32, FP16 and INT8, this part of the excercise involves using the Jetson Inference SSD-based Objective Detection in Pytorch with MobileNet backbone and my selection of animal classes from Google Open Images dataset. Once the SSD-Mobilenet model is trained on the Xavier NX, I converted it to an ONNX to run TensorRT on test images.  
 
 **Note**: If run on Docker container, make sure to raise the shared memory limit so that you can use higher batch size. You can do so with the command for JetPack version 4.4.1 or can be found at this [link](https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md)
 ```
@@ -266,5 +266,6 @@ detectnet:  shutdown complete.
 	- https://github.com/dusty-nv/jetson-inference/blob/master/docs/pytorch-ssd.md
 	- https://github.com/dusty-nv/pytorch-ssd/blob/master/open_images_classes.txt
 	- https://storage.googleapis.com/openimages/web/download.html
+	- https://github.com/qfgaohao/pytorch-ssd
 	- https://docs.nvidia.com/deeplearning/frameworks/tf-trt-user-guide/index.html
 	 
