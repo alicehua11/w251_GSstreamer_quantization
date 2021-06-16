@@ -106,8 +106,10 @@ A total of 4300 images of 7 classes were downloaded. Below is the stats for the 
 ```
 
  
-3) How long did it take to train model, how many epochs and batch-size? 
+3) How long did it take to train model, how many epochs and batch-size?  
+
 |           | Time trained model | batch-size | number of epochs |
+|-----------|--------------------|------------|------------------|
 | Xavier NX | ~6 hrs             | 10         | 30               |   
 
 Below are some of the images output of this model. Some were not classified at all while some did.
