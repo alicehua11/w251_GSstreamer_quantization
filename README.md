@@ -135,11 +135,17 @@ For reference, the Pytorch model uses FP32, and TensorRT uses FP16. So, we have 
 [TRT]    device GPU, loaded models/animal/ssd-mobilenet.onnx
 ```
 The following are model performance for both models, measured in terms of images/sec on the test set.
+
+|                | Native Pytorch     | TensorRT           |
+|----------------|--------------------|--------------------|
+| Inference time | ~13-14 images/sec  | ~17-18 images/sec  |
+
+
 ```
 # Native Pytorch 
 python3 valid_ssd.py --data=data/animal --model-dir=models/animal --resume=models/animal/mb1-ssd-Epoch-29-Loss-8.494942945592543.pth --batch-size=1 --epoch=1
 505it [00:36, 13.70it/s]
-# So this means 13 images/sec 
+# So this means 13 images/sec after a run on 505 images  
 
 # TensorRT
 IMAGES=/jetson-inference/python/training/detection/ssd/data/animal/test   
