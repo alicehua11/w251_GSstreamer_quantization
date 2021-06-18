@@ -3,6 +3,12 @@
 
 This repository contains my homework 6 **Optimizing Models for the Edge and GStreamer** for course W251 - Deep Learning in the Cloud and at the Edge at the UC Berkeley School of Information.
 
+### Common Files:
+
+- `misc` is a directory of other files that were experimented on during the course of completing the assignment but were not used in the final turn in. These are kept here for reference to past attempts only.
+- `client.py` is the python listener for the GStream part question 4.
+- `ssd` is the folder directory from the jetson inference repo referred to  in the **References** section. Included here for reference on the changes made to this directory to complete part 2 of this assignment.
+
 ### Part I: GStreamer 
 **Note**: you can use `jtop` to see Jetson hardware accelerators. NVDEC and NVENC are the GPU hardware accelerator engines for video decoding that support transcoding application.
 
