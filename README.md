@@ -1,7 +1,7 @@
 # W251 - Summmer 2021 - Homework 6
 ### Section 2: Alice Hua
 
-This repository contains my homework 6 **Optimizing Models for the Edge and GStreamer** for course W251 - Deep Learning in the Cloud and at the Edge at the UC Berkeley School of Information.
+This repository contains my homework 6 **Optimizing Models for the Edge and GStreamer** for the course W251 - Deep Learning in the Cloud and at the Edge at the UC Berkeley School of Information.
 
 ### Common Files:
 
